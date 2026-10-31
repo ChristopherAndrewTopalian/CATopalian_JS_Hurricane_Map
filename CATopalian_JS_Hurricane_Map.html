@@ -267,7 +267,7 @@ async function loadHurricanes()
             let lat = coords[1];
             let { x, y } = latLonToXY(lat, lon);
 
-            // 1. Create Dot
+            // Create Dot
             let dot = ce('div');
             dot.className = 'storm_dot';
             dot.title = name + "\nAlert Level: " + alert_level;
@@ -276,7 +276,7 @@ async function loadHurricanes()
             
             let mapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
             
-            // 2. Create Row
+            // Create Row
             let row = ce('div');
             row.className = 'list_row';
             row.onclick = function()
@@ -296,14 +296,14 @@ async function loadHurricanes()
             info.style.fontSize = '14px';
             row.append(info);
 
-            // === THE BI-DIRECTIONAL SYNC ===
+            // THE BI-DIRECTIONAL SYNC
 
-            // A. Hover the DOT -> Highlight the ROW
+            // Hover the DOT -> Highlight the ROW
             dot.addEventListener('mouseenter', function()
             {
                 hoverSound();
                 row.style.backgroundColor = '#333'; // Highlight the row
-                // Magic touch: smoothly scrolls the list so the row is visible!
+                // smoothly scrolls the list so the row is visible
                 row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             });
 
@@ -322,7 +322,7 @@ async function loadHurricanes()
             mapContent.append(dot);
             listView.append(row);
 
-            // B. Hover the ROW -> Highlight the DOT
+            // Hover the ROW -> Highlight the DOT
             row.addEventListener('mouseenter', function()
             {
                 hoverSound();
