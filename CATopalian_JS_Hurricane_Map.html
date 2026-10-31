@@ -75,7 +75,7 @@ body
     height: 100px; /* Fixed height guarantees the scrollbar appears */
     margin: 1px auto;
     background-color: rgb(25, 25, 30);
-    border: 1px solid #444;
+    border: 1px solid rgb(68, 68, 68);
     overflow-y: scroll; /* Forces the vertical scrollbar */
 }
 
@@ -83,7 +83,7 @@ body
     font-size: 14px;
     font-weight: bold;
     padding: 2px;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid rgb(68, 68, 68);
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -91,13 +91,14 @@ body
 }
 
 .list_row:hover {
-    background-color: #333;
+    background-color: rgb(50, 50, 50);
 }
 
 .storm_badge {
-    background-color: #0088ff;
+    background-color: rgb(0, 136, 255);
     padding: 0px 5px;
     border-radius: 4px;
+    font-size: 12px;
     font-weight: bold;
     margin-right: 10px;
 }
@@ -251,13 +252,30 @@ async function loadHurricanes()
         let data = await response.json();
         let features = data.features || [];
 
-        ge('count_lbl').textContent = features.length === 0 ? "No active storms globally." : `Active Storms: ${features.length}`;
+        //-//
+
+        let countLbl = ge('count_lbl');
+        if (features.length === 0) 
+        {
+            countLbl.textContent = "No active storms worldwide.";
+        } 
+        else 
+        {
+            countLbl.textContent = "Active Storms: " + features.length;
+        }
+        //ge('count_lbl').textContent = features.length === 0 ? "No active storms worldwide." : `Active Storms: ${features.length}`;
+
+        //-//
 
         let mapContent = ge('map_content');
         let listView = ge('list_view');
 
-        features.forEach(function(storm) 
+        // The Traditional, High-Speed For Loop
+        for (let i = 0; i < features.length; i++) 
         {
+            // We explicitly grab the current storm using our 'i' index
+            let storm = features[i];
+            
             let props = storm.properties;
             let coords = storm.geometry.coordinates;
             
@@ -266,7 +284,11 @@ async function loadHurricanes()
             
             let lon = coords[0];
             let lat = coords[1];
-            let { x, y } = latLonToXY(lat, lon);
+            
+            // Classic Object extraction instead of modern destructuring
+            let xyPos = latLonToXY(lat, lon);
+            let x = xyPos.x;
+            let y = xyPos.y;
 
             // Create Dot
             let dot = ce('div');
@@ -275,7 +297,8 @@ async function loadHurricanes()
             dot.style.left = Math.floor(x) - 6 + 'px';
             dot.style.top = Math.floor(y) - 6 + 'px';
             
-            let mapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
+            // Classic String Concatenation (No more template literals)
+            let mapsUrl = "https://www.google.com/maps/search/?api=1&query=" + lat + "," + lon;
             
             // Create Row
             let row = ce('div');
@@ -294,7 +317,7 @@ async function loadHurricanes()
 
             let info = ce('span');
             info.textContent = name;
-            info.style.fontSize = '14px';
+            info.style.fontSize = '12px';
             row.append(info);
 
             // THE BI-DIRECTIONAL SYNC
@@ -340,7 +363,7 @@ async function loadHurricanes()
                 dot.style.transform = '';
                 dot.style.zIndex = '';
             });
-        });
+        }
     } 
     catch (err) 
     {
