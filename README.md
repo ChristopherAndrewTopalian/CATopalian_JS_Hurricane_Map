@@ -1,35 +1,16 @@
-# CATopalian NWJS Hurricane Map
-A JavaScript NW.js Node.js application that tracks Hurricanes worldwide!
+# CATopalian JS Hurricane Map
+A JavaScript  application that tracks Hurricanes worldwide!
 We can click on any Hurricane and it will open the Google map location precisely!
 
-![screenshot_001](app/src/media/textures/screenshots/001.webp)
+![screenshot_001](src/media/textures/screenshots/001.webp)
 
-![screenshot_002](app/src/media/textures/screenshots/002.webp)
+![screenshot_002](src/media/textures/screenshots/002.webp)
 
-![screenshot_003](app/src/media/textures/screenshots/003.webp)
+![screenshot_003](src/media/textures/screenshots/003.webp)
 
-![screenshot_004](app/src/media/textures/screenshots/004.webp)
+![screenshot_004](src/media/textures/screenshots/004.webp)
 
-![screenshot_004](app/src/media/textures/screenshots/005.webp)
-
-Video: https://www.youtube.com/watch?v=GswdvQfjZX4
-
----
-
-REQUIREMENTS:
-
-NW.js  
-https://nwjs.io/  
-
----
-
-To run this application we:
-* Download NW.js
-* Extract All
-* Find the nw.exe icon
-* Drag the folder named **app** onto the **nw.exe** icon  
-
-Full Instructions on Running our app here: https://github.com/ChristopherAndrewTopalian/CATopalian_JavaScript_NW.js
+![screenshot_005](src/media/textures/screenshots/005.webp)
 
 ---
 
@@ -38,7 +19,7 @@ Full Instructions on Running our app here: https://github.com/ChristopherAndrewT
 2. Choose Download ZIP
 3. Save the Zip File
 4. Extract All
-5. Drag the folder named **app** onto the nw.exe icon 
+5. Double click on the HTML file 
 
 ---
 
